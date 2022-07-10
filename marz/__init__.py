@@ -20,6 +20,7 @@ except ImportError:
 
 from .transform import collapse_meas_reset_pairs
 
+
 def about():
     """The Marz version info function.
     """

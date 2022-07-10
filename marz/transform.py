@@ -95,7 +95,7 @@ def collapse_meas_reset_pairs(circuits):
                     if qubit in meas_set:
                         meas_set.remove(qubit)
 
-            #Append anything else
+            # Append anything else
             new_data.append(op.copy())
         # Atta
         new_qc._data = new_data
