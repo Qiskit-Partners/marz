@@ -1,2 +1,2 @@
 # marz
-Measure and reset simplify
+Measure and reset simplification on IBM Quantum Hardware
