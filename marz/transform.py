@@ -27,9 +27,9 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
+# pylint: disable=protected-access, invalid-name
 
 """Circuit transformation tools"""
-from qiskit import QuantumCircuit
 from qiskit.circuit.library import XGate
 from qiskit.circuit import CircuitInstruction
 from qiskit.circuit.parametertable import ParameterReferences, ParameterTable
@@ -38,10 +38,10 @@ from qiskit.circuit.parametertable import ParameterReferences, ParameterTable
 def collapse_meas_reset_pairs(circuits):
     """ Collapse measure + reset pairs on qubits down to a
     single measurement followed by a conditional X-gate.
-    
+
     Parameters:
         circuits (QuantumCircuit or list): One or more QuantumCircuits.
-        
+
     Returns:
         QuantumCircuit or list: QuantumCircuits with measure+reset pairs collapsed.
     """
@@ -49,13 +49,13 @@ def collapse_meas_reset_pairs(circuits):
     if not isinstance(circuits, list):
         circuits = [circuits]
         passed_list = False
-    
+
     out_circuits = []
     for qc in circuits:
         meas_set = set()
         meas_last_qubits = {}
         new_data = []
-        
+
         # This code block is a copy of some of the "copy" method in qiskit.circuit.quantumcircuit
         new_qc = qc.copy_empty_like(qc.name)
         operation_copies = {
@@ -69,7 +69,7 @@ def collapse_meas_reset_pairs(circuits):
                 for param in qc._parameter_table
             }
         )
-        # --------------------------------------------------------------------------------------------
+        # --------------------------------------------------------------------------------------
         for op in qc._data:
             name = op.operation.name
             if name == 'reset':
