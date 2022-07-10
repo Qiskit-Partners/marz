@@ -27,7 +27,7 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
-# pylint: disable=protected-access, invalid-name
+# pylint: disable=protected-access, invalid-name, consider-using-f-string
 
 """Circuit transformation tools"""
 from qiskit.circuit.library import XGate
