@@ -18,6 +18,7 @@ try:
 except ImportError:
     __version__ = '0.0.0'
 
+from .transform import collapse_meas_reset_pairs
 
 def about():
     """The Marz version info function.
