@@ -68,7 +68,7 @@ def test_simple_multi_reg_null():
     qr = QuantumRegister(2, 'q')
     qc = QuantumCircuit(qr, cr1, cr2)
     qc.measure(0, 1)
-    qc.reset(1) # reset not on same qubit as meas
+    qc.reset(1)  # reset not on same qubit as meas
 
     new_qc = marz.collapse_meas_reset_pairs(qc)
 
