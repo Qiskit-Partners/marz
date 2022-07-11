@@ -41,4 +41,3 @@ def test_simple_null():
     new_qc = marz.collapse_meas_reset_pairs(qc)
 
     assert new_qc == qc
-    
