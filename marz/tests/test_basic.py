@@ -11,7 +11,7 @@
 # that they have been altered from the originals.
 """Test basic circuits"""
 from qiskit import QuantumCircuit
-from qiskit.circuit import Clbit, ClassicalRegister
+from qiskit.circuit import Clbit, ClassicalRegister, QuantumRegister
 
 import marz
 
@@ -37,6 +37,38 @@ def test_simple_null():
     qc.measure(0, 0)
     qc.x(0)
     qc.reset(0)
+
+    new_qc = marz.collapse_meas_reset_pairs(qc)
+
+    assert new_qc == qc
+
+
+def test_simple_multi_reg():
+    """Test simple, multiple registers"""
+    cr1 = ClassicalRegister(1, 'c1')
+    cr2 = ClassicalRegister(1, 'c2')
+    qr = QuantumRegister(1, 'q')
+    qc = QuantumCircuit(qr, cr1, cr2)
+    qc.measure(0, 1)
+    qc.reset(0)
+
+    new_qc = marz.collapse_meas_reset_pairs(qc)
+
+    ans_qc = QuantumCircuit(qr, cr1, cr2)
+    ans_qc.measure(0, 1)
+    ans_qc.x(0).c_if(Clbit(ClassicalRegister(1, 'c2'), 0), 1)
+
+    assert new_qc == ans_qc
+
+
+def test_simple_multi_reg_null():
+    """Test simple, multiple registers, null change"""
+    cr1 = ClassicalRegister(1, 'c1')
+    cr2 = ClassicalRegister(1, 'c2')
+    qr = QuantumRegister(2, 'q')
+    qc = QuantumCircuit(qr, cr1, cr2)
+    qc.measure(0, 1)
+    qc.reset(1) # reset not on same qubit as meas
 
     new_qc = marz.collapse_meas_reset_pairs(qc)
 
