@@ -32,3 +32,8 @@ jobs:
         pip install -U -r requirements-dev.txt
         pylint -rn marz
         pycodestyle --max-line-length=100 marz
+    - name: Run tests with pytest
+      run: |
+        conda install pytest
+        python setup.py install
+        pytest -p no:warnings --pyargs marz/tests
