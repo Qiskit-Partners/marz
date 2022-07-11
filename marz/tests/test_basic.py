@@ -91,7 +91,7 @@ def test_simple_multi_resets():
     assert new_qc == ans_qc
 
 
-def test_simple_multi_resets():
+def test_simple_multi_resets2():
     """Reset BEFORE measurement not collapsed"""
     qc = QuantumCircuit(2, 2)
     qc.measure(0, 0)
