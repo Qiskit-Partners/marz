@@ -18,13 +18,13 @@ import marz
 
 def test_simple():
     """Test simple"""
-    qc = QuantumCircuit(1,1)
+    qc = QuantumCircuit(1, 1)
     qc.measure(0, 0)
     qc.reset(0)
 
     new_qc = marz.collapse_meas_reset_pairs(qc)
 
-    ans_qc = QuantumCircuit(1,1)
+    ans_qc = QuantumCircuit(1, 1)
     ans_qc.measure(0, 0)
     ans_qc.x(0).c_if(Clbit(ClassicalRegister(1, 'c'), 0), 1)
 
@@ -33,7 +33,7 @@ def test_simple():
 
 def test_simple_null():
     """Test simple no change in circuit"""
-    qc = QuantumCircuit(1,1)
+    qc = QuantumCircuit(1, 1)
     qc.measure(0, 0)
     qc.x(0)
     qc.reset(0)
