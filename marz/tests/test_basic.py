@@ -74,6 +74,7 @@ def test_simple_multi_reg_null():
 
     assert new_qc == qc
 
+
 def test_simple_multi_resets():
     """Only first reset is collapsed"""
     qc = QuantumCircuit(1, 2)
