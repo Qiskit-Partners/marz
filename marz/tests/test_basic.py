@@ -109,3 +109,14 @@ def test_simple_multi_resets2():
     ans_qc.measure(1, 1)
 
     assert new_qc == ans_qc
+
+
+def test_barriers_work():
+    """Test that barriers block consolidation"""
+    qc = QuantumCircuit(1, 1)
+    qc.measure(0, 0)
+    qc.barrier(0)
+    qc.reset(0)
+
+    new_qc = marz.collapse_meas_reset_pairs(qc)
+    assert new_qc == qc
