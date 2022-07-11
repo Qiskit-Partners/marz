@@ -6,6 +6,12 @@ Marz is a **m**easurement **a**nd **r**eset simplification routine that collapse
 
 `marz` therefore saves one measurement per operation pair.  Because measurements are the operations with the largest error rates on IBM Quantum systems, and each measurement takes ~2 CNOT gates worth of time, this optimization reduces error rates and can reduce the duration of quantum circuits (dephasing) that impliment qubit reuse.  It can also eliminate the dreaded `BufferOverflow` error where measurement results are beinging generated faster than they can be stored.
 
+## Installation
+
+```
+pip install marz
+```
+
 
 ## Usage
 
