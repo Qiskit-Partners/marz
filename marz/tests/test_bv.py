@@ -17,10 +17,10 @@ import marz
 
 def bv_circ(bitstring):
     """Create a Bernstein-Vazirani circuit from a given bitstring.
-    
+
     Parameters:
         bitstring (str): A bitstring.
-        
+
     Returns:
         QuantumCircuit: Output circuit.
     """
@@ -39,7 +39,7 @@ def bv_circ(bitstring):
             qc.reset(1)
             qc.x(1)
             qc.h(1)
-        
+
     return qc
 
 
@@ -49,7 +49,7 @@ def test_dynamic_bv():
     new_qc = marz.collapse_meas_reset_pairs(qc)
     # validate number of resets
     assert new_qc.count_ops()['reset'] == 4
-    
+
     # validate that all resets are on Q1
     for op in new_qc.data:
         if op.operation.name == 'reset':
