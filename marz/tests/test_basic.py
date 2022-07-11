@@ -73,3 +73,38 @@ def test_simple_multi_reg_null():
     new_qc = marz.collapse_meas_reset_pairs(qc)
 
     assert new_qc == qc
+
+def test_simple_multi_resets():
+    """Only first reset is collapsed"""
+    qc = QuantumCircuit(1, 2)
+    qc.measure(0, 0)
+    qc.reset(0)
+    qc.reset(0)
+
+    new_qc = marz.collapse_meas_reset_pairs(qc)
+
+    ans_qc = QuantumCircuit(1, 2)
+    ans_qc.measure(0, 0)
+    ans_qc.x(0).c_if(Clbit(ClassicalRegister(2, 'c'), 0), 1)
+    ans_qc.reset(0)
+
+    assert new_qc == ans_qc
+
+
+def test_simple_multi_resets():
+    """Reset BEFORE measurement not collapsed"""
+    qc = QuantumCircuit(2, 2)
+    qc.measure(0, 0)
+    qc.reset(0)
+    qc.reset(1)
+    qc.measure(1, 1)
+
+    new_qc = marz.collapse_meas_reset_pairs(qc)
+
+    ans_qc = QuantumCircuit(2, 2)
+    ans_qc.measure(0, 0)
+    ans_qc.x(0).c_if(Clbit(ClassicalRegister(2, 'c'), 0), 1)
+    ans_qc.reset(1)
+    ans_qc.measure(1, 1)
+
+    assert new_qc == ans_qc
