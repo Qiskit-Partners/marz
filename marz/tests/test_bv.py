@@ -32,7 +32,7 @@ def bv_circ(bitstring):
         if int(bit):
             qc.cx(0, 1)
         qc.h(0)
-        qc.measure(0,idx)
+        qc.measure(0, idx)
         if idx != len(bitstring)-1:
             qc.reset(0)
             # reset control
